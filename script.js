@@ -63,6 +63,14 @@ const useOperator = (operator) => {
     operatorValue = operator;
 };
 
+// Reset Display
+const resetAll = () => {
+    firstValue = 0;
+    operatorValue = '';
+    awaitingNextValue = false;
+    calculatorDisplay.textContent = '0';
+};
+
 // Add event listener to ever button
 inputBtns.forEach((inputBtn) => {
     if (inputBtn.classList.length === 0) {
@@ -75,14 +83,6 @@ inputBtns.forEach((inputBtn) => {
         inputBtn.addEventListener('click', () => addDecimal());
     }
 });
-
-// Reset Display
-const resetAll = () => {
-    firstValue = 0;
-    operatorValue = '';
-    awaitingNextValue = false;
-    calculatorDisplay.textContent = '0';
-};
 
 // CLEAR event listener... ^
 clearBtn.addEventListener('click', resetAll);
