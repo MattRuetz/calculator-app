@@ -98,6 +98,10 @@ button:active {
     box-shadow: none;
 }
 
+button:focus {
+    outline: none;
+}
+
 .operator {
     background: rgb(110, 110, 110);
     color: white;
@@ -122,9 +126,17 @@ button:active {
     grid-column: -2;
     /* Next line: start cell at row 2, extends 4 rows (2->6) */
     grid-row: 2 / span 4;
-    background: #68ad91;
+    background: #31be5c;
 }
 
 .equal-sign:active {
     background: #00df38;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 600px) {
+    .calculator {
+        width: 95%;
+    }
 }
