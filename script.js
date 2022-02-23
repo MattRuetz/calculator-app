@@ -6,6 +6,16 @@ let firstValue = 0;
 let operatorValue = '';
 let awaitingNextValue = false;
 
+// Calculate operands with operator
+const calculate = {
+    '/': (firstNumber, secondNumber) => firstNumber / secondNumber,
+    '*': (firstNumber, secondNumber) => firstNumber * secondNumber,
+    '+': (firstNumber, secondNumber) => firstNumber + secondNumber,
+    '-': (firstNumber, secondNumber) => firstNumber - secondNumber,
+    '=': (firstNumber, secondNumber) => secondNumber, //result stored in 2nd operand
+};
+
+// Send a value of clicked number btn to screen
 const sendNumberValue = (number) => {
     // Replace current display IF first val has been entered
     if (awaitingNextValue) {
@@ -30,15 +40,8 @@ const addDecimal = () => {
     }
 };
 
-// Calculate operands with operator
-const calculate = {
-    '/': (firstNumber, secondNumber) => firstNumber / secondNumber,
-    '*': (firstNumber, secondNumber) => firstNumber * secondNumber,
-    '+': (firstNumber, secondNumber) => firstNumber + secondNumber,
-    '-': (firstNumber, secondNumber) => firstNumber - secondNumber,
-    '=': (firstNumber, secondNumber) => secondNumber, //result stored in 2nd operand
-};
-
+// Collect first value and second value, then apply calculation object
+// and set result as first operand for more inputs to operate on this val
 const useOperator = (operator) => {
     const currentValue = Number(calculatorDisplay.textContent);
     // Prevent multiple operators
@@ -51,7 +54,6 @@ const useOperator = (operator) => {
     if (!firstValue) {
         firstValue = currentValue;
     } else {
-        console.log(firstValue, operatorValue, currentValue);
         const calculation = calculate[operatorValue](firstValue, currentValue);
         calculatorDisplay.textContent = calculation;
         firstValue = calculation;
@@ -75,7 +77,6 @@ inputBtns.forEach((inputBtn) => {
 });
 
 // Reset Display
-
 const resetAll = () => {
     firstValue = 0;
     operatorValue = '';
@@ -83,4 +84,5 @@ const resetAll = () => {
     calculatorDisplay.textContent = '0';
 };
 
+// CLEAR event listener... ^
 clearBtn.addEventListener('click', resetAll);
